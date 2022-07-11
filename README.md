@@ -6,3 +6,6 @@ https://github.com/vareal/SDD_Standard/tree/rails6_docker
 https://github.com/vareal/SDD_Standard/tree/next_rails_docker
 
 https://vareal.esa.io/posts/17267
+
+## Rails6 API Mode + MySQL5.7 ＋ Docker環境構築
+https://github.com/vareal/SDD_Standard/tree/rails6_api_mode_mysql5.7_docker
