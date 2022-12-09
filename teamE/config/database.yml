@@ -1,0 +1,30 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password:
+  host: localhost
+
+development:
+  <<: *default
+  # databaseは好みの名前に変更可能
+  database: myapp_development
+  host: db
+  username: root
+  password: password
+
+test:
+  <<: *default
+  # databaseは好みの名前に変更可能
+  database: myapp_test
+  host: db
+  username: root
+  password: password
+# # 本番環境のDB情報を以下に記入
+# production:
+#   <<: *default
+#   # databaseは好みの名前に変更可能
+#   database: myapp_production
+#   username: myapp
+#   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>

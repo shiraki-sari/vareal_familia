@@ -1,0 +1,101 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  # 使用しているRubyのバージョンを指定
+  TargetRubyVersion: 3.1
+  Include:
+    - "**/Rakefile"
+    - "**/config.ru"
+  Exclude:
+    - "Capfile"
+    - "Gemfile"
+    - "app/webpacks/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - !ruby/regexp /old_and_unused\.rb$/
+    - "bin/**/*"
+    - "vendor/bundle/**/*"
+    - "node_modules/**/*"
+
+Rails:
+  Enabled: true
+
+# specはparamが括弧無しで渡されたときに、メソッドとのあいまいなブロックの関連付けをチェックしない
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*.rb"
+
+# ABCチェックのポイントは50ポイントまで許可する
+Metrics/AbcSize:
+  Max: 50
+  Exclude:
+    - "app/helpers/*"
+
+# モジュールの行数は500行まで許可する
+Metrics/ModuleLength:
+  Max: 500
+
+# クラス内の行数は500行まで許可する
+Metrics/ClassLength:
+  Max: 500
+
+# ブロックの行数は100行まで許可する
+Metrics/BlockLength:
+  Max: 100
+  Exclude:
+    - "spec/**/*.rb"
+
+# メソッドの行数は50行まで許可する
+Metrics/MethodLength:
+  Max: 50
+  Exclude:
+    - "spec/**/*.rb"
+
+# 行の長さはチェックしない
+Layout/LineLength:
+  Enabled: false
+
+# バリデーションスキップするメソッドの使用制限
+Rails/SkipsModelValidations:
+  Exclude:
+    - "spec/**/*.rb"
+
+# Marshal.loadメソッドの使用制限
+Security/MarshalLoad:
+  Exclude:
+    - "spec/**/*.rb"
+
+# コメントのアスキー文字以外を許可する
+Style/AsciiComments:
+  Enabled: false
+
+# 内容が空のメソッドでも複数行を許可する
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+# 記述を統一する為に複数行でも->記法を許可する
+Style/Lambda:
+  Enabled: false
+
+# シンボルの配列はリテラル以外も許可する
+Style/SymbolArray:
+  Enabled: false
+
+# diffが少なくなるため最後のカンマは許可する(リテラル)
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+# diffが少なくなるため最後のカンマは許可する(引数)
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+# case-whenの循環的複雑度をチェック
+Metrics/CyclomaticComplexity:
+  Max: 10"
