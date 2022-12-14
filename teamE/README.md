@@ -177,3 +177,5 @@ docker-compose run --rm web bundle exec rails credentials:edit
 - rubocop.yml の中身は、各々のプロジェクトに合わせて適宜ご修正ください。
 - Rails と OS のタイムゾーンは JST、DB のタイムゾーンは UTC に設定してあります。各々のプロジェクトに合わせて適宜ご修正ください。  
   https://zenn.dev/ryouzi/articles/dda18594f2dbd3
+- bootstrap5.2を使用しています。
+  https://getbootstrap.jp/docs/5.0/utilities/colors/

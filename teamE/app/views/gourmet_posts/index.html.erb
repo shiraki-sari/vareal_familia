@@ -1,0 +1,7 @@
+<h1>ブログ一覧</h1>
+<div>
+  <% @posts.each do |post| %>
+    <%= post[:title] %>
+    <%= post[:body] %>
+  <% end %>
+</div>
