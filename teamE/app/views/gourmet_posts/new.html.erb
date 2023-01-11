@@ -1,0 +1,6 @@
+<%= form_with url: gourmet_posts_path, local: true  do |form| %>
+  <%= form.text_field :title %><br>
+  <%= form.text_area :content %><br>
+  <%= form.file_field :picture %><br>
+  <%= form.submit %>
+<% end %>
