@@ -1,6 +1,8 @@
-<h1>ブログ詳細</h1>
+<div class="container">
+<h1 class="border p-2" style="width: fit-content;">abc詳細</h1>
 <div>
-    <%= @post[:title] %>
-    <%= @post[:body] %>
+<span class="border border-primary"><%= @post[:title] %></span>
+<span class="border border-danger"><%= @post[:body] %></span>
     <button class="btn btn-primary" >このボタンはブートストラップです</button>
+</div>
 </div>
