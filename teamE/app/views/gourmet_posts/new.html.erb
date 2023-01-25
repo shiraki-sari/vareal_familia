@@ -1,6 +1,17 @@
 <%= form_with url: gourmet_posts_path, local: true  do |form| %>
-  <%= form.text_field :title %><br>
-  <%= form.text_area :content %><br>
-  <%= form.file_field :picture %><br>
-  <%= form.submit %>
+  <div class='mb-3'>
+    <%= form.label :title, 'タイトル（仮）', class: 'd-block' %>
+    <%= form.text_field :title %>
+  </div>
+  <div class='mb-3'>
+    <%= form.label :content, 'キャプション（仮）', class: 'd-block' %>
+    <%= form.text_area :content %>
+  </div>
+  <div class='mb-3'>
+    <%= form.label :picture, '画像（仮）', class: 'd-block' %>
+    <%= form.file_field :picture %>
+  </div>
+  <div class='mb-3'>
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
 <% end %>
