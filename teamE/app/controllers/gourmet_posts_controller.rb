@@ -1,6 +1,6 @@
 class GourmetPostsController < ApplicationController
   def index
-    @posts = Post.all.includes([picture_attachment: :blob])
+    @posts = Post.with_attached_picture
   end
 
   def new
