@@ -1,12 +1,6 @@
 class GourmetPostsController < ApplicationController
   def index
-    @posts = [
-      {title: "タイトル１", body: "このブログを#{'~' * 100}"},
-      {title: "タイトル２", body: "このブログを#{'~' * 100}"},
-      {title: "タイトル３", body: "このブログを#{'~' * 100}"},
-      {title: "タイトル４", body: "このブログを#{'~' * 100}"}
-    ]
-    # @posts = Post.all
+    @posts = Post.all.includes([picture_attachment: :blob])
   end
 
   def new
