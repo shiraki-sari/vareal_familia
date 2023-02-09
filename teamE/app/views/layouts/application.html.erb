@@ -17,6 +17,18 @@
       <%= yield %>
       <div class="mt-5 text-center small text-dark border-bottom border-dark bg-secondary sticky-bottom">
         vareal
+        <% if logged_in? %>
+        <div>
+          <%= link_to "ログイン", new_session_path %>
+        </div>
+        <div>
+          <%= link_to "新規登録", new_user_path %>
+        </div>
+        <% else %>
+        <div>
+          <%= link_to "ログアウト", session_path(current_user), method: :delete %>
+        </div>
+        <% end %>
       </div>
     </div>
   </body>
