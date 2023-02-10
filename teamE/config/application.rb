@@ -19,6 +19,14 @@ module Myapp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      if instance.kind_of?(ActionView::Helpers::Tags::Label)
+        html_tag.html_safe
+      else
+        "<div class=\"has_errors\">#{html_tag}</div>".html_safe
+      end
+    end
+
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone= :utc
 

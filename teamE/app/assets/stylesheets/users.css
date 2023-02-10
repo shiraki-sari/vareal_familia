@@ -1,0 +1,4 @@
+.has_errors input{
+  border: solid;
+  border-color: red;
+}

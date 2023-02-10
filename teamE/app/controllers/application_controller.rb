@@ -1,12 +1,13 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  before_action :login_required
+
+  add_flash_types :success, :info, :warning, :danger
 
   private
 
   def login_required
     if logged_in?
-      flash[:error] = "ログインしてください。"
+      flash[:danger] = "ログインしてください。"
       redirect_to new_session_path
     end
   end

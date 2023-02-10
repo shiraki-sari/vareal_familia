@@ -1,22 +1,24 @@
 class SessionsController < ApplicationController
-skip_before_action :login_required, only: [:new, :create]
+before_action :login_required, only: :destroy
 
   def new
   end
 
   def create
-    user = User.find_by(login_id: params[:session][:login_id].downcase)
+    user = User.find_by(login_id: params[:session][:login_id])
     if user &.authenticate(params[:session][:password])
       login(user)
+      flash[:success] = "ログインしました。"
       redirect_to gourmet_posts_path
     else
-      flash[:error] = 'IDかパスワードが間違っています。'
+      flash[:danger] = 'IDかパスワードが間違っています。'
       render :new
     end
   end
 
   def destroy
     logout
-    redirect_to new_session_path
+    flash[:info] = 'ログアウトしました。'
+    redirect_to login_path
   end
 end

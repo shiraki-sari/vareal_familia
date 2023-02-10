@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required, only: [:new, :create]
 
   def new
     @user = User.new
@@ -9,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
+      flash[:notice] = "新規登録が完了しました。"
       redirect_to gourmet_posts_path
     else
       render 'new'
