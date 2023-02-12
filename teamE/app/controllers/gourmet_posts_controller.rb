@@ -23,6 +23,6 @@ class GourmetPostsController < ApplicationController
   private
 
   def gourmet_post_params
-    params.permit(:title, :content, :picture)
+    params.require(:post).permit(:title, :content, :picture)
   end
 end

@@ -1,5 +1,5 @@
 <div class='container'>
-  <%= form_with url: gourmet_posts_path, local: true, class: 'mt-3'  do |form| %>
+  <%= form_with model: @post, url: gourmet_posts_path, local: true, class: 'mt-3'  do |form| %>
     <div class='mb-3'>
       <%= form.label :title, 'タイトル（仮）', class: 'd-block' %>
       <%= form.text_field :title, class: 'w-100 rounded' %>
