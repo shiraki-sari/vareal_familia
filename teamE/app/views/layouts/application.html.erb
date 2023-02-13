@@ -14,9 +14,25 @@
   <body>
     <div class="container">
       <%= render 'layouts/header' %>
+      <%= render 'layouts/flash_message' %>
       <%= yield %>
-      <div class="mt-5 text-center small text-dark border-bottom border-dark bg-secondary sticky-bottom">
-        vareal
+      <div class="mt-5 small text-dark border-bottom border-dark bg-secondary sticky-bottom d-flex justify-content-between aliegn-items-center">
+        <div></div>
+        <p>vareal</p>
+        <% if logged_in? %>
+        <div class="d-flex justify-content-end">
+          <div>
+            <%= link_to "ログイン", login_path, class: "btn btn-outline-success bg-white" %>
+          </div>
+          <div>
+            <%= link_to "新規登録", signup_path, class: "btn btn-success" %>
+          </div>
+          <% else %>
+          <div>
+            <%= link_to "ログアウト", logout_path(current_user), method: :delete %>
+          </div>
+        </div>
+        <% end %>
       </div>
     </div>
   </body>

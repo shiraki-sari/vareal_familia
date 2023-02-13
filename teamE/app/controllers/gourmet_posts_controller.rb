@@ -1,4 +1,7 @@
 class GourmetPostsController < ApplicationController
+  before_action :login_required
+  skip_before_action :login_required, only: :index
+
   def index
     @posts = Post.with_attached_picture
   end

@@ -1,0 +1,29 @@
+<% if @user.errors.any? %>
+  <ul>
+  <% @user.errors.each do |error| %>
+    <li><%= error.full_message  %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @user, local: true  do |form| %>
+  <div class='mb-3'>
+    <%= form.label :name, '名前', class: 'd-block' %>
+    <%= form.text_field :name %>
+  </div>
+  <div class='mb-3'>
+    <%= form.label :login_id, 'ログインID', class: 'd-block' %>
+    <%= form.text_field :login_id %>
+  </div>
+  <div class='mb-3'>
+    <%= form.label :password, 'パスワード', class: 'd-block' %>
+    <%= form.password_field :password %>
+  </div>
+  <div class='mb-3'>
+    <%= form.label :password_confirmation, 'パスワード(確認)', class: 'd-block' %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  <div class='mb-3'>
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
