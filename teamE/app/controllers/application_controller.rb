@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def login_required
     if logged_in?
       flash[:danger] = "ログインしてください。"
-      redirect_to new_session_path
+      redirect_to login_path
     end
   end
 end
