@@ -1,0 +1,17 @@
+<div class="mt-5 small text-dark border-bottom border-dark bg-secondary sticky-bottom d-flex justify-content-between aliegn-items-center">
+  <p>vareal</p>
+  <% if logged_in? %>
+    <div class="d-flex justify-content-end">
+      <div>
+        <%= link_to "ログイン", login_path, class: "btn btn-outline-success bg-white" %>
+      </div>
+      <div>
+        <%= link_to "新規登録", signup_path, class: "btn btn-success" %>
+      </div>
+    </div>
+  <% else %>
+    <div>
+      <%= link_to "ログアウト", logout_path(current_user), method: :delete %>
+    </div>
+  <% end %>
+</div>
