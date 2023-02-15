@@ -1,11 +1,21 @@
 <%= form_with scope: :session, url: login_path, local: true  do |form| %>
   <div class='mb-3'>
     <%= form.label :login_id, 'ログインID', class: 'd-block' %>
-    <%= form.text_field :login_id %>
+    <% if @login_error.nil?  %>
+      <%= form.text_field :login_id %>
+    <% else %>
+      <%= form.text_field :login_id, class: "border border-danger" %>
+      <p class="text-danger"><%= @login_error %></p>
+    <% end %>
   </div>
   <div class='mb-3'>
     <%= form.label :password, 'パスワード', class: 'd-block' %>
-    <%= form.password_field :password %>
+    <% if @password_error.nil?  %>
+      <%= form.password_field :password %>
+    <% else %>
+      <%= form.password_field :password, class: "border border-danger" %>
+      <p class="text-danger"><%= @password_error %></p>
+    <% end %>
   </div>
   <div class='mb-3'>
     <%= form.submit "ログイン", class: 'btn btn-primary' %>
