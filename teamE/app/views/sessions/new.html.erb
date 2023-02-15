@@ -1,25 +1,29 @@
-<%= form_with scope: :session, url: login_path, local: true  do |form| %>
-  <div class='mb-3'>
-    <%= form.label :login_id, 'ログインID', class: 'd-block' %>
-    <% if @login_error.nil?  %>
-      <%= form.text_field :login_id %>
-    <% else %>
-      <%= form.text_field :login_id, class: "border border-danger" %>
-      <p class="text-danger"><%= @login_error %></p>
+<div class="card mt-3">
+  <div class="card-body">
+    <%= form_with scope: :session, url: login_path, local: true  do |form| %>
+      <div class='mb-3'>
+        <% if @login_error.nil?  %>
+          <%= form.text_field :login_id, placeholder: "ログインID", class: "w-100" %>
+        <% else %>
+          <%= form.text_field :login_id, placeholder: "ログインID", class: "border border-danger w-100" %>
+          <p class="text-danger"><%= @login_error %></p>
+        <% end %>
+      </div>
+      <div class='mb-3'>
+        <% if @password_error.nil?  %>
+          <%= form.password_field :password, placeholder: "パスワード", class: "w-100" %>
+        <% else %>
+          <%= form.password_field :password, placeholder: "パスワード", class: "border border-danger w-100" %>
+          <p class="text-danger"><%= @password_error %></p>
+        <% end %>
+      </div>
+      <div class='mb-3 text-end'>
+        <%= form.submit "ログイン", class: 'btn btn-primary' %>
+      </div>
     <% end %>
-  </div>
-  <div class='mb-3'>
-    <%= form.label :password, 'パスワード', class: 'd-block' %>
-    <% if @password_error.nil?  %>
-      <%= form.password_field :password %>
-    <% else %>
-      <%= form.password_field :password, class: "border border-danger" %>
-      <p class="text-danger"><%= @password_error %></p>
-    <% end %>
-  </div>
-  <div class='mb-3'>
-    <%= form.submit "ログイン", class: 'btn btn-primary' %>
-  </div>
-<% end %>
 
-<%= link_to "新規登録", signup_path %>
+    <div class="text-end">
+      <%= link_to "新規登録", signup_path %>
+    </div>
+  </div>
+</div>
