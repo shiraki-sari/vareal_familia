@@ -1,7 +1,9 @@
 <div class="card mt-3">
   <div class="row g-0">
     <div class="col-md-8" style="height: 550px;">
-      <%= image_tag @post.picture, class: 'w-100 border-end h-100'%>
+      <%= link_to @post.picture, "data-lightbox" => @post.picture do %>
+        <%= image_tag @post.picture, class: 'w-100 border-end h-100'%>
+      <% end %>
     </div>
     <div class="col-md-4 position-relative">
       <div class="card-body">
