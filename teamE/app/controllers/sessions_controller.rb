@@ -13,11 +13,18 @@ before_action :login_required, only: :destroy
       flash[:success] = "ログインしました。"
       redirect_to gourmet_posts_path
     else
-      @login_error = 'ログインIDが間違っています。'
-      @login_error = 'ログインIDを入力してください。' if @login_id.blank?
-      @password_error = 'パスワードが間違っています。'
-      @password_error = 'パスワードを入力してください。' if password.blank?
-      flash[:danger] = 'IDかパスワードが間違っています。'
+      if @login_id.present? && password.present?
+        flash[:danger] = 'IDかパスワードが間違っています。'
+        @login_error = nil
+        @password_error = nil
+      elsif @login_id.present? && password.blank?
+        @password_error = 'パスワードを入力してください。'
+      elsif @login_id.blank? && password.present?
+        @login_error = 'ログインIDを入力してください。'
+      else
+        @login_error = 'ログインIDを入力してください。'
+        @password_error = 'パスワードを入力してください。'
+      end
       render :new
     end
   end

@@ -2,9 +2,11 @@
   <div class="card-body">
     <%= form_with scope: :session, url: login_path, local: true  do |form| %>
       <div class='mb-3'>
-        <% if @login_error.nil?  %>
-          <%= form.text_field :login_id, placeholder: "ログインID", class: "w-100" %>
-        <% else %>
+        <% if @login_error.nil? && @login_id.present? %>
+          <%= form.text_field :login_id, value: @login_id, placeholder: "ログインID", class: "w-100" %>
+        <% elsif @login_error.nil? && @login_id.nil? %>
+          <%= form.text_field :login_id, value: @login_id, placeholder: "ログインID", class: "w-100" %>
+        <% elsif @login_error.present? %>
           <%= form.text_field :login_id, value: @login_id, placeholder: "ログインID", class: "border border-danger w-100" %>
           <p class="text-danger"><%= @login_error %></p>
         <% end %>
