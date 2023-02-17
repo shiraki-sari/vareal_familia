@@ -7,24 +7,20 @@ before_action :login_required, only: :destroy
   def create
     @login_id = params[:session][:login_id]
     password = params[:session][:password]
+
+    @login_error = 'ログインIDを入力してください。' if @login_id.blank?
+    @password_error = 'パスワードを入力してください。' if password.blank?
+    if @login_error || @password_error
+      return render :new
+    end
+
     user = User.find_by(login_id: @login_id)
     if user &.authenticate(password)
       login(user)
       flash[:success] = "ログインしました。"
       redirect_to gourmet_posts_path
     else
-      if @login_id.present? && password.present?
-        flash[:danger] = 'IDかパスワードが間違っています。'
-        @login_error = nil
-        @password_error = nil
-      elsif @login_id.present? && password.blank?
-        @password_error = 'パスワードを入力してください。'
-      elsif @login_id.blank? && password.present?
-        @login_error = 'ログインIDを入力してください。'
-      else
-        @login_error = 'ログインIDを入力してください。'
-        @password_error = 'パスワードを入力してください。'
-      end
+      flash.now[:danger] = 'IDかパスワードが間違っています。'
       render :new
     end
   end
