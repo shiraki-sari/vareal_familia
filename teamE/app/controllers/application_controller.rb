@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   private
 
   def login_required
-    if logged_in?
-      flash[:danger] = "ログインしてください。"
-      redirect_to login_path
-    end
+    return if logged_in?
+
+    flash[:danger] = "ログインしてください。"
+    redirect_to login_path
   end
 end
