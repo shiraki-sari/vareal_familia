@@ -7,13 +7,22 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(login_id: params[:session][:login_id])
-    if user &.authenticate(params[:session][:password])
+    @login_id = params[:session][:login_id]
+    password = params[:session][:password]
+
+    @login_error = 'ログインIDを入力してください。' if @login_id.blank?
+    @password_error = 'パスワードを入力してください。' if password.blank?
+    if @login_error || @password_error
+      return render :new
+    end
+
+    user = User.find_by(login_id: @login_id)
+    if user &.authenticate(password)
       login(user)
       flash[:success] = "ログインしました。"
       redirect_to gourmet_posts_path
     else
-      flash[:danger] = 'IDかパスワードが間違っています。'
+      flash.now[:danger] = 'IDかパスワードが間違っています。'
       render :new
     end
   end
