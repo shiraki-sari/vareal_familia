@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_secure_password(validations: false)
 
   validate do |record|
-    record.errors.add(:password, :blank) unless record.password_digest.present?
+    record.errors.add(:password, :blank) if record.password_digest.blank?
   end
 
   validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: "は半角英数字のみが使用できます" }
