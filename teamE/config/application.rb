@@ -23,7 +23,14 @@ module Myapp
       if instance.kind_of?(ActionView::Helpers::Tags::Label)
         html_tag.html_safe
       else
-        "<div class=\"has_errors\">#{html_tag}</div>".html_safe
+        model_name = instance.object.class.name.underscore
+        method_name = instance.instance_variable_get(:@method_name)
+        "<div class=\"has_errors\">#{html_tag}
+          <span class=\"text-danger\">
+          #{I18n.t("activerecord.attributes.#{model_name}.#{method_name}")}
+          #{instance.error_message.first}
+          </span>
+        </div>".html_safe
       end
     end
 
