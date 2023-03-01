@@ -15,4 +15,6 @@ class User < ApplicationRecord
   validates :login_id, presence: true, uniqueness: true, length: {maximum: 30}
   has_secure_password(validations: false)
   validates :password, format: { with: /[a-zA-Z0-9]/ }, on: :create
+
+  has_many :posts, dependent: :destroy
 end
