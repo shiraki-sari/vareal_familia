@@ -12,6 +12,7 @@ class GourmetPostsController < ApplicationController
 
   def create
     @post = Post.new(gourmet_post_params)
+    @post.user_id = @current_user.id
     if @post.save
       redirect_to gourmet_posts_path
     else
