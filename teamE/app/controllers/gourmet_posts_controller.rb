@@ -24,6 +24,16 @@ class GourmetPostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.user == @current_user
+      @post.destroy # MEMO: 投稿者がいない投稿はコンソールから削除する仕様
+      redirect_to gourmet_posts_path, notice: '投稿を削除しました。'
+    else
+      redirect_to gourmet_post_path(params[:id]), alert: '投稿したユーザーのみ削除可能です。'
+    end
+  end
+
   private
 
   def gourmet_post_params
