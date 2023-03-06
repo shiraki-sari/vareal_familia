@@ -4,7 +4,7 @@ class GourmetPostsController < ApplicationController
   before_action :set_user_post, only: [:destroy]
 
   def index
-    @posts = Post.with_attached_picture.order(updated_at: "DESC")
+    @posts = Post.with_attached_picture.order(updated_at: "DESC").includes(:user)
   end
 
   def new
