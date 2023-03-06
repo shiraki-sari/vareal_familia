@@ -12,6 +12,7 @@
         <div class="d-flex align-items-start flex-column bd-highlight mb-3">
           <div class="p-2 bd-highlight"><h5 class="card-title"><%= @post.title %></h5></div>
           <div class="p-2 bd-highlight"><p class="card-text"><%= @post.content %></p></div>
+          <div class="position-absolute bottom-0 p-2 bd-highlight"><p class="card-text "><%= @post.user.name %></p></div>
           <div class="position-absolute bottom-0 end-0 p-2 bd-highlight"><p class="card-text "><small class="text-muted">最終更新: <%= @post.updated_at.strftime("%Y年%m月%d日 %H:%M") %></small></p></div>
         </div>
       </div>

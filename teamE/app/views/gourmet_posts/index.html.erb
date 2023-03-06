@@ -4,12 +4,20 @@
     <% image_url = post.picture.presence || '/no_image.jpeg' %>
     <%# TODO: CSSファイルに書く %>
     <div class='col-md-4 p-1' style='margin-top: 10px; border: double thick; border-color: rgb(255, 102, 51 ,0.33);'>
-      <%= link_to image_url, "data-lightbox" => image_url do %>
-        <%= image_tag image_url, style: 'width:100%;height: 400px;' %>
-      <% end %>
-      <br/>
-      <h5 class='float-start' style='margin-right:10px;'><%= link_to post.title, gourmet_post_path(post), data: {"turbolinks" => false} %></h5>
-      <p>投稿日: <%= post.created_at.strftime("%Y/%m/%d") %></p>
+      <div>
+        <%= link_to image_url, "data-lightbox" => image_url do %>
+          <%= image_tag image_url, style: 'width:100%;height: 400px;' %>
+        <% end %>
+      </div>
+        <div class='post-infomation' style='display:flex; flex-direction:column;' >
+        <div>
+          <h5 class='float-start''><%= link_to post.title, gourmet_post_path(post), data: {"turbolinks" => false} %></h5>
+        </div>
+        <div class='post-create-information' style='display:flex; justify-content:space-between; position:relative; top: 0; left: 0;'>
+          <div class='post-author'><p>作者: <%= post.user.name %> </p></div>
+          <div class='post-created_at'><p>投稿日: <%= post.created_at.strftime("%Y/%m/%d") %></p></div>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

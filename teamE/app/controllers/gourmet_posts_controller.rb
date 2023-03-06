@@ -3,7 +3,7 @@ class GourmetPostsController < ApplicationController
   skip_before_action :login_required, only: :index
 
   def index
-    @posts = Post.with_attached_picture.order(updated_at: "DESC")
+    @posts = Post.with_attached_picture.order(updated_at: "DESC").includes([:user])
   end
 
   def new
