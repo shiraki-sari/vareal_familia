@@ -11,6 +11,7 @@
 #
 class User < ApplicationRecord
   has_many :posts
+  has_many :likes
 
   validates :name, presence: true
   validates :login_id, presence: true, uniqueness: true, length: {maximum: 30}
