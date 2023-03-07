@@ -9,6 +9,9 @@
 
       <% # 投稿したユーザーとログインユーザーが一致するとき削除ボタンを表示 %>
       <% if @post.user == @current_user %>
+        <div class="" style="">
+          <%= link_to "編集", edit_gourmet_post_path(id: @post.id), class: 'btn btn-outline-success btn-sm text-success bg-white' %>
+        </div>
         <div class="position-absolute top-0">
           <%= link_to "削除", gourmet_post_path(id: @post.id), method: :delete, data: { confirm: "投稿を削除しますか？\n※この操作は元に戻せません。" }, role: 'button', class: 'btn btn-outline-warning btn-sm text-warning bg-white' %>
         </div>
