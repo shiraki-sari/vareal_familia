@@ -1,0 +1,23 @@
+<div class='container'>
+  <%= form_with model: @post, url: edit_gourmet_post_path, local: true, class: 'form' do |form| %>
+    <div class='form-items'>
+      <div class='form-item'>
+        <%= form.label :title, 'タイトル', class: 'form-label' %>
+        <%= form.text_field :title, class: 'form-text-input' %>
+      </div>
+      <div class='form-item'>
+        <%= form.label :content, 'キャプション', class: 'form-label' %>
+        <%= form.text_field :content, class: 'form-text-input' %>
+      </div>
+      <div class='form-item'>
+        <p>画像を変更</p>
+        <%= form.file_field :picture %>
+        <% if form.object.picture.attached? %>
+          <%= image_tag form.object.picture %>
+        <% else %>
+          <%= image_tag '/no_image.jpeg' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
