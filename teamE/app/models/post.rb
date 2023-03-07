@@ -18,6 +18,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Post < ApplicationRecord
+  validates :title, presence: true
+
   has_one_attached :picture
   belongs_to :user, optional: true
 end

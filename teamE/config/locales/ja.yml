@@ -8,6 +8,8 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     attributes:
+      post:
+        title: タイトル
       user:
         name: '名前'
         login_id: 'ログインID'
