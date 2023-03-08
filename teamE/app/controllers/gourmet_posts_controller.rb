@@ -1,7 +1,7 @@
 class GourmetPostsController < ApplicationController
   before_action :login_required
   skip_before_action :login_required, only: :index
-  before_action :set_user_post, only: %i(:update, :destroy)
+  before_action :set_user_post, only: %i[update destroy]
 
   def index
     @posts = Post.with_attached_picture.order(updated_at: "DESC").includes(:user)
@@ -32,10 +32,10 @@ class GourmetPostsController < ApplicationController
 
   def update
     @post.assign_attributes(gourmet_post_params)
-    if post.save(gourmet_post_params)
+    if @post.save
       redirect_to gourmet_posts_path
     else
-      redirect_to edit_gourmet_post_path(post)
+      redirect_to edit_gourmet_post_path(@post)
     end
   end
 
