@@ -1,13 +1,13 @@
 <div class='container'>
   <%= form_with model: @post, url: gourmet_post_path, local: true, class: 'form' do |form| %>
     <div class='form-items'>
-      <div class='form-item'>
-        <%= form.label :title, 'タイトル', class: 'form-label' %>
-        <%= form.text_field :title, class: 'form-text-input' %>
+      <div class='form-item mb-3'>
+        <%= form.label :title, 'タイトル', class: 'd-block' %>
+        <%= form.text_field :title, class: 'w-100 rounded' %>
       </div>
-      <div class='form-item'>
-        <%= form.label :content, 'キャプション', class: 'form-label' %>
-        <%= form.text_field :content, class: 'form-text-input' %>
+      <div class='form-item mb-3'>
+        <%= form.label :content, 'キャプション', class: 'd-block' %>
+        <%= form.text_field :content, class: 'w-100 rounded' %>
       </div>
         <div class='mb-3'>
           <label class='border p-2 rounded', style='cursor: pointer;'>
@@ -16,16 +16,15 @@
             <%= form.file_field :picture, onchange: 'previewImage(event)', style: "display:none;" %>
           </label>
       </div>
-      <div class='form-item'>
-        <%= form.file_field :picture, class: 'form-picture-input', onchange: 'previewImage(event)', style: "display:none;" %>
+      <div class='form-item__picture mb-3 border border-primary'>
         <% if form.object.picture.attached? %>
-          <%= image_tag form.object.picture, id: 'preview'%>
+          <%= image_tag form.object.picture, id: 'preview' %>
         <% else %>
           <%= image_tag '/no_image.jpeg', id: 'preview' %>
         <% end %>
       </div>
-      <div class='form-actions'>
-        <ul>
+      <div class="form-action__items">
+        <ul class="d-flex flex-row list-unstyled">
           <li>
             <%= form.submit '更新', class: 'btn btn-warning' %>
           </li>

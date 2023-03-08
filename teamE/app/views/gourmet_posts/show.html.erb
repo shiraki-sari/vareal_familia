@@ -6,22 +6,25 @@
       <%= link_to image_url, "data-lightbox" => image_url do %>
         <%= image_tag image_url, class: 'w-100 border-end h-100'%>
       <% end %>
-
-      <% # 投稿したユーザーとログインユーザーが一致するとき削除ボタンを表示 %>
-      <% if @post.user == @current_user %>
-        <div class="" style="">
-          <%= link_to "編集", edit_gourmet_post_path(id: @post.id), class: 'btn btn-outline-success btn-sm text-success bg-white' %>
-        </div>
-        <div class="position-absolute top-0">
-          <%= link_to "削除", gourmet_post_path(id: @post.id), method: :delete, data: { confirm: "投稿を削除しますか？\n※この操作は元に戻せません。" }, role: 'button', class: 'btn btn-outline-warning btn-sm text-warning bg-white' %>
-        </div>
-      <% end %>
     </div>
     <div class="col-md-4 position-relative">
       <div class="card-body">
         <div class="d-flex align-items-start flex-column bd-highlight mb-3">
           <div class="p-2 bd-highlight"><h5 class="card-title"><%= @post.title %></h5></div>
           <div class="p-2 bd-highlight"><p class="card-text"><%= @post.content %></p></div>
+          <% # 投稿したユーザーとログインユーザーが一致するとき削除ボタンを表示 %>
+          <% if @post.user == @current_user %>
+            <div class="position-absolute bottom-0">
+              <ul class="d-flex flex-row list-unstyled">
+                <li>
+                  <%= link_to "編集", edit_gourmet_post_path(id: @post.id), class: 'btn btn-outline-success btn-sm text-success bg-white' %>
+                </li>
+                  <%= link_to "削除", gourmet_post_path(id: @post.id), method: :delete, data: { confirm: "投稿を削除しますか？\n※この操作は元に戻せません。" }, role: 'button', class: 'btn btn-outline-warning btn-sm text-warning bg-white' %>
+                <li>
+                </li>
+              </ul>
+            </div>
+          <% end %>
           <div class="position-absolute bottom-0 end-0 p-2 bd-highlight"><p class="card-text "><small class="text-muted">最終更新: <%= @post.updated_at.strftime("%Y年%m月%d日 %H:%M") %></small></p></div>
         </div>
       </div>
