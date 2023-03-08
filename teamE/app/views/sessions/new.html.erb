@@ -17,13 +17,10 @@
           <p class="text-danger"><%= @password_error %></p>
         <% end %>
       </div>
-      <div class='mb-3 text-end'>
+      <div class="d-flex justify-content-between mb-3">
+        <%= link_to "新規登録", signup_path %>
         <%= form.submit "ログイン", class: 'btn btn-primary' %>
       </div>
     <% end %>
-
-    <div class="text-end">
-      <%= link_to "新規登録", signup_path %>
-    </div>
   </div>
 </div>

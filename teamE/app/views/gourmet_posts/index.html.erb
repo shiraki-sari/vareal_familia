@@ -14,7 +14,7 @@
           <h5 class='float-start'><%= link_to post.title, gourmet_post_path(post), data: {"turbolinks" => false} %></h5>
         </div>
         <div class='post-create-information' style='display:flex; justify-content:space-between; position:relative; top: 0; left: 0;'>
-          <div class='post-author'><p>作者: <%= post.user.name %> </p></div>
+          <div class='post-author'><p>作者: <%= post.user&.name %> </p></div>
           <div class='post-created_at'><p>投稿日: <%= post.created_at.strftime("%Y/%m/%d") %></p></div>
         </div>
       </div>

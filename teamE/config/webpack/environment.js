@@ -8,4 +8,5 @@ environment.plugins.prepend(
     Popper: 'popper.js'
   })
 )
+environment.splitChunks()
 module.exports = environment
