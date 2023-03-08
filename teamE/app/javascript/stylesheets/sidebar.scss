@@ -1,0 +1,25 @@
+.sidebar {
+  background-color: #ff6633;
+  position: sticky;
+  top: 200px;
+}
+
+.sidebar-content {
+  text-align: center;
+  color: white;
+}
+
+.sidebar-content p {
+  font-weight: bold;
+}
+
+.sidebar-content a {
+  font-weight: normal;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar-content span {
+  border-right: 1px solid white;
+  margin-right: 5px;
+}
