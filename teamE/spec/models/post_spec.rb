@@ -20,16 +20,11 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  before do
-    @params = { title: 'テストブログタイトル', content: 'テストブログ内容' }
-  end
-
   it 'update blog title and contents' do
-    post = Post.create!(@params)
+    post = FactoryBot.create(:post)
     post.update({ title: 'タイトル編集', content: '内容編集' })
     expect(post.title).to eq 'タイトル編集'
     expect(post.content).to eq '内容編集'
   end
-
   #pending "add some examples to (or delete) #{__FILE__}"
 end

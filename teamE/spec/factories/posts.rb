@@ -19,6 +19,7 @@
 #
 FactoryBot.define do
   factory :post do
-    
+    title { 'テストブログタイトル' } 
+    content { 'テストブログ内容' }
   end
 end
