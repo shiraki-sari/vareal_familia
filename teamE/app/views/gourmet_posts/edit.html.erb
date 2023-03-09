@@ -19,6 +19,7 @@
       <div class='form-item__picture mb-3 border border-primary'>
         <% if form.object.picture.attached? %>
           <%= image_tag form.object.picture, id: 'preview' %>
+          <div id="new-image"></div>
         <% else %>
           <%= image_tag '/no_image.jpeg', id: 'preview' %>
         <% end %>
@@ -26,7 +27,7 @@
       <div class="form-action__items">
         <ul class="d-flex flex-row list-unstyled">
           <li>
-            <%= form.submit '更新', class: 'btn btn-warning' %>
+            <%= form.submit '更新', class: 'btn btn-primary' %>
           </li>
           <li>
             <%= link_to 'キャンセル', :back, class: 'btn btn-secondary' %>
