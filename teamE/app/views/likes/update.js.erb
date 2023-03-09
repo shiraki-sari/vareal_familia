@@ -1,0 +1,12 @@
+$(function() {
+    // いいね数更新
+    const $likeCount = $('[data-like-count][data-like-post-id="<%= j @post.id %>"]');
+    $likeCount.text('<%= j number_to_human @post.likes.count, format: '%n%u', units: {thousand: 'k'} %>');
+
+    // いいねボタンの表示切り替え
+    const $likeBtns = $('[data-like-btn][data-like-post-id="<%= j @post.id %>"]');
+    const $hiddenLikeBtns = $likeBtns.filter(':hidden');
+    $('[data-like-btn][data-like-post-id="<%= j @post.id %>"]').hide(0);
+    $likeBtns.hide(0).data('now-requesting', false);
+    $hiddenLikeBtns.show(0);
+});
