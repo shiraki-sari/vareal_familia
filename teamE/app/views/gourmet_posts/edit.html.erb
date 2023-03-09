@@ -6,15 +6,25 @@
         <%= form.text_field :title, class: 'w-100 rounded' %>
       </div>
       <div class='form-item mb-3'>
-        <%= form.label :content, 'キャプション', class: 'd-block' %>
-        <%= form.text_field :content, class: 'w-100 rounded' %>
+        <%= form.label :content, '説明', class: 'd-block' %>
+        <%= form.text_area :content, class: 'w-100 rounded' %>
       </div>
-        <div class='mb-3'>
-          <label class='border p-2 rounded', style='cursor: pointer;'>
-            <%= image_tag 'parts/camera.svg' %>
-            <span class="ml-5">画像を選択する</span>
-            <%= form.file_field :picture, onchange: 'previewImage(event)', style: "display:none;" %>
-          </label>
+      <div class="d-flex justify-content-end">
+        <ul class="d-flex flex-row list-unstyled">
+          <li>
+            <%= form.submit '更新', class: 'btn btn-primary' %>
+          </li>
+          <li>
+            <%= link_to 'キャンセル', :back, class: 'btn btn-outline-dark' %>
+          </li>
+        </ul>
+      </div>
+      <div class='mb-3'>
+        <label class='border p-2 rounded', style='cursor: pointer;'>
+          <%= image_tag 'parts/camera.svg' %>
+          <span class="ml-5">画像を選択する</span>
+          <%= form.file_field :picture, onchange: 'previewImage(event)', style: "display:none;" %>
+        </label>
       </div>
       <div class='form-item__picture mb-3 border border-primary'>
         <% if form.object.picture.attached? %>
@@ -23,16 +33,6 @@
         <% else %>
           <%= image_tag '/no_image.jpeg', id: 'preview' %>
         <% end %>
-      </div>
-      <div class="form-action__items">
-        <ul class="d-flex flex-row list-unstyled">
-          <li>
-            <%= form.submit '更新', class: 'btn btn-primary' %>
-          </li>
-          <li>
-            <%= link_to 'キャンセル', :back, class: 'btn btn-secondary' %>
-          </li>
-        </ul>
       </div>
     </div>
   <% end %>
