@@ -14,7 +14,7 @@
           <div class="p-2 bd-highlight"><p class="card-text"><%= @post.content %></p></div>
           <% # 投稿したユーザーとログインユーザーが一致するとき削除ボタンを表示 %>
           <% if @post.user == @current_user %>
-            <div class="position-absolute bottom-0">
+            <div class="show-action__items">
               <ul class="d-flex flex-row list-unstyled">
                 <li>
                   <%= link_to "編集", edit_gourmet_post_path(id: @post.id), class: 'btn btn-outline-success btn-sm text-success bg-white' %>
