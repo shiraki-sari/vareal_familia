@@ -23,7 +23,7 @@ class Post < ApplicationRecord
 
   has_one_attached :picture
   belongs_to :user, optional: true
-  has_many :likes
+  has_many :likes, dependent: :destroy 
   enum genre: {
     izakaya: 0,
     teishoku: 1,
