@@ -33,7 +33,7 @@ class GourmetPostsController < ApplicationController
   def update
     @post.assign_attributes(gourmet_post_params)
     if @post.save
-      redirect_to gourmet_posts_path
+      redirect_to gourmet_posts_path, success: '投稿を更新しました。'
     else
       redirect_to edit_gourmet_post_path(@post)
     end
