@@ -6,7 +6,7 @@
     <div>
       <p>ログインID: <%= @user.login_id %></p>
     </div>
-    <% @user.posts.includes([:picture_attachment]).each do |post| %>
+    <% @user.posts.with_attached_picture.order(updated_at: "DESC").includes([:picture_attachment]).each do |post| %>
       <% image_url = post.picture.presence || '/no_image.jpeg' %>
       <div class='col-md-4 p-1' style='margin-top: 10px; border: double thick; border-color: rgb(255, 102, 51 ,0.33);'>
         <div>
