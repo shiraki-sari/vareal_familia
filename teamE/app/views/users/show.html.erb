@@ -1,10 +1,14 @@
 <div class="row" style="margin-left: 0; margin-right: 0;">
   <div class="row" style="margin-left: 0; margin-right: 0;">
-    <div>
-      <p>ユーザー名: <%= @user.name %></p>
-    </div>
-    <div>
-      <p>ログインID: <%= @user.login_id %></p>
+    <div class="card mt-2">
+      <div class="card-body">
+        <div>
+          <p>ユーザー名: <%= @user.name %></p>
+        </div>
+        <div>
+          <p>ログインID: <%= @user.login_id %></p>
+        </div>
+      </div>
     </div>
     <% @user.posts.with_attached_picture.order(updated_at: "DESC").includes([:picture_attachment]).each do |post| %>
       <% image_url = post.picture.presence || '/no_image.jpeg' %>
