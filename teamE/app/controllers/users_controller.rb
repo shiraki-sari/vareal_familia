@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   include SessionsConcern
 
+  before_action :login_required, except: %i[new create]
+  before_action :set_user, only: %i[show]
+  before_action :correct_user, only: %i[show]
+
   def new
     @user = User.new
   end
@@ -19,9 +23,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def show; end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :login_id, :password, :password_confirmation)
+  end
+
+  def set_user
+    @user = User.find_by(id: params[:id])
+  end
+
+  def correct_user
+    unless current_user == @user
+      flash[:danger] = 'アクセスが拒否されました。'
+      redirect_to user_path(current_user)
+    end
   end
 end

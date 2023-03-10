@@ -1,0 +1,32 @@
+<div class="row" style="margin-left: 0; margin-right: 0;">
+  <div class="row" style="margin-left: 0; margin-right: 0;">
+    <div class="card mt-2">
+      <div class="card-body">
+        <div>
+          <p>ユーザー名: <%= @user.name %></p>
+        </div>
+        <div>
+          <p>ログインID: <%= @user.login_id %></p>
+        </div>
+      </div>
+    </div>
+    <% @user.posts.with_attached_picture.order(updated_at: "DESC").includes([:picture_attachment]).each do |post| %>
+      <% image_url = post.picture.presence || '/no_image.jpeg' %>
+      <div class='col-md-4 p-1' style='margin-top: 10px; border: double thick; border-color: rgb(255, 102, 51 ,0.33);'>
+        <div>
+          <%= link_to image_url, "data-lightbox" => image_url do %>
+            <%= image_tag image_url, style: 'width:100%;height: 400px;' %>
+          <% end %>
+        </div>
+        <div class='post-infomation' style='display:flex; flex-direction:column;' >
+          <div>
+            <h5 class='float-start'><%= link_to post.title, gourmet_post_path(post), data: {"turbolinks" => false} %></h5>
+          </div>
+          <div class='post-create-information' style='display:flex; justify-content:space-between; position:relative; top: 0; left: 0;'>
+            <div class='post-created_at'><p>投稿日: <%= post.created_at.strftime("%Y/%m/%d") %></p></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
