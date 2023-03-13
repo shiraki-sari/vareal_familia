@@ -11,8 +11,8 @@
           <% end %>
         </div>
         <div class='post-infomation' style='display:flex; flex-direction:column;' >
-          <div>
-            <h5 class='float-start'><%= link_to post.title, gourmet_post_path(post), data: {"turbolinks" => false} %></h5>
+          <div class='row'>
+            <h5 class='float-start d-inline-block text-truncate'><%= link_to post.title, gourmet_post_path(post), data: {"turbolinks" => false} %></h5>
           </div>
           <div class='post-create-information' style='display:flex; justify-content:space-between; position:relative; top: 0; left: 0;'>
             <div class='post-author'><p>作者: <%= post.user&.name %> </p></div>
