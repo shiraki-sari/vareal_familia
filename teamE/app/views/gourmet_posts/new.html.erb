@@ -15,15 +15,13 @@
       <label class='border p-2 rounded', style='cursor: pointer;'>
         <%= image_tag 'parts/camera.svg' %>
         <span class="ml-5">画像を選択する</span>
-        <%= form.file_field :picture, onchange: 'previewImage(event)', style: "display:none;" %>
+        <%= form.file_field :picture, multiple: true, onchange: 'previewImage(event)', style: "display:none;" %>
       </label>
     </div>
     <div class='mb-3' style="width: 400px; height: 400px;">
-      <% if @post.picture.attached? %>
-        <%= image_tag @post.picture, class: 'rounded-3 border', id: 'preview', style: 'width: 100%; height: 100%; object-fit: contain;' %>
-      <% else %>
+      <div id='preview'>
         <%= image_tag '/no_image.jpeg', class: 'rounded-3 border', id: 'preview', style: 'width: 100%; height: 100%; object-fit: contain;' %>
-      <% end %>
+      </div>
     </div>
   <% end %>
 </div>

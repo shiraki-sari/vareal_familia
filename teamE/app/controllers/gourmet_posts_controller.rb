@@ -13,6 +13,7 @@ class GourmetPostsController < ApplicationController
   end
 
   def create
+    binding.pry
     @post = Post.new(gourmet_post_params)
     @post.user_id = @current_user.id
     @post.picture.attach(resize_image(gourmet_post_params[:picture])) if gourmet_post_params[:picture].present?
@@ -52,7 +53,7 @@ class GourmetPostsController < ApplicationController
   private
 
   def gourmet_post_params
-    params.require(:post).permit(:title, :content, :picture)
+    params.require(:post).permit(:title, :content, picture: [])
   end
 
   def set_user_post
