@@ -1,4 +1,5 @@
 previewImage = (event) => {
+  console.log(event.target.files)
   const files = []
   const preview = document.getElementById('preview')
   preview.innerHTML = ''

@@ -23,16 +23,19 @@
         <label class='border p-2 rounded', style='cursor: pointer;'>
           <%= image_tag 'parts/camera.svg' %>
           <span class="ml-5">画像を選択する</span>
-          <%= form.file_field :picture, onchange: 'previewImage(event)', style: "display:none;" %>
+          <%= form.file_field :pictures, multiple: true, onchange: 'previewImage(event)', style: "display:none;" %>
         </label>
       </div>
       <div class='form-item__picture mb-3 border border-primary'>
-        <% if form.object.picture.attached? %>
-          <%= image_tag form.object.picture, id: 'preview' %>
-          <div id="new-image"></div>
-        <% else %>
-          <%= image_tag '/no_image.jpeg', id: 'preview' %>
-        <% end %>
+        <div id='preview'>
+          <% if form.object.pictures.attached? %>
+            <% form.object.pictures.each do |image_url| %>
+              <%= image_tag image_url, class: 'rounded-3 border', id: 'preview', style: 'width: 100%; height: 100%; object-fit: contain;' %>
+            <% end %>
+          <% else %>
+            <%= image_tag '/no_image.jpeg', id: 'preview' %>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>
