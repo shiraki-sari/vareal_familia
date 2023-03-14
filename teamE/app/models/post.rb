@@ -20,6 +20,6 @@
 class Post < ApplicationRecord
   validates :title, presence: true
 
-  has_many_attached :picture
+  has_many_attached :pictures
   belongs_to :user, optional: true
 end

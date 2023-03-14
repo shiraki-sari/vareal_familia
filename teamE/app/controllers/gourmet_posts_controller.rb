@@ -4,7 +4,7 @@ class GourmetPostsController < ApplicationController
   before_action :set_user_post, only: %i[update destroy]
 
   def index
-    @posts = Post.with_attached_picture.order(updated_at: "DESC").includes(:user)
+    @posts = Post.with_attached_pictures.order(updated_at: "DESC").includes(:user)
     @genres = Genre.all
   end
 
@@ -13,7 +13,6 @@ class GourmetPostsController < ApplicationController
   end
 
   def create
-    binding.pry
     @post = Post.new(gourmet_post_params)
     @post.user_id = @current_user.id
     @post.picture.attach(resize_image(gourmet_post_params[:picture])) if gourmet_post_params[:picture].present?
@@ -53,7 +52,7 @@ class GourmetPostsController < ApplicationController
   private
 
   def gourmet_post_params
-    params.require(:post).permit(:title, :content, picture: [])
+    params.require(:post).permit(:title, :content, pictures: [])
   end
 
   def set_user_post

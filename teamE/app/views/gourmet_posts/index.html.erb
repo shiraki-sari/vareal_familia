@@ -2,7 +2,7 @@
 <div class="col-md-9">
   <div class="row" style="margin-left: 0; margin-right: 0;">
     <% @posts.each do |post| %>
-      <% image_url = post.picture.presence || '/no_image.jpeg' %>
+      <% image_url = post.pictures.presence || '/no_image.jpeg' %>
       <%# TODO: CSSファイルに書く %>
       <div class='col-md-4 p-1' style='margin-top: 10px; border: double thick; border-color: rgb(255, 102, 51 ,0.33);'>
         <div>

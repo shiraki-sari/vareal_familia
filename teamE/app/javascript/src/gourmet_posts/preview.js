@@ -1,10 +1,15 @@
-const files = []
-
 previewImage = (event) => {
+  const files = []
   const preview = document.getElementById('preview')
   preview.innerHTML = ''
 
-  files.push(event.target.files[0])
+  if (event.target.files.length > 1) {
+    for (let i = 0; i < event.target.files.length; i++) {
+      files.push(event.target.files[i])
+    }
+  } else {
+    files.push(event.target.files[0])
+  }
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i]
@@ -18,3 +23,4 @@ previewImage = (event) => {
     fileReader.readAsDataURL(file)
   }
 }
+
