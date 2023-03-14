@@ -29,8 +29,8 @@
       <div class='form-item__picture mb-3 border border-primary'>
         <div id='preview'>
           <% if form.object.pictures.attached? %>
-            <% form.object.pictures.each do |image_url| %>
-              <%= image_tag image_url, class: 'rounded-3 border', id: 'preview', style: 'width: 100%; height: 100%; object-fit: contain;' %>
+            <% form.object.pictures.each do |picture| %>
+              <%= image_tag picture, class: 'rounded-3 border', id: 'preview', style: 'width: 100%; height: 100%; object-fit: contain;' %>
             <% end %>
           <% else %>
             <%= image_tag '/no_image.jpeg', id: 'preview' %>

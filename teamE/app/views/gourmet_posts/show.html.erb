@@ -4,9 +4,9 @@
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <% if @post.pictures.first.presence  %>
-          <% @post.pictures.each do |picture| %>
+          <% @post.pictures.includes(:blob).each do |picture| %>
             <div class="carousel-item active">
-              <%= link_to image_url, "data-lightbox" => image_url do %>
+              <%= link_to picture, "data-lightbox" => picture do %>
                 <%= image_tag picture %>
               <% end %>
             </div>
