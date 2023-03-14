@@ -2,12 +2,12 @@
 <div class="col-md-9">
   <div class="row" style="margin-left: 0; margin-right: 0;">
     <% @posts.each do |post| %>
-      <% image_url = post.pictures.presence || '/no_image.jpeg' %>
+      <% image_url = post.pictures.first.presence || '/no_image.jpeg' %>
       <%# TODO: CSSファイルに書く %>
       <div class='col-md-4 p-1' style='margin-top: 10px; border: double thick; border-color: rgb(255, 102, 51 ,0.33);'>
         <div>
-          <%= link_to image_url.first, "data-lightbox" => image_url.first do %>
-            <%= image_tag image_url.first, style: 'width:100%;height: 400px;' %>
+          <%= link_to image_url, "data-lightbox" => image_url do %>
+            <%= image_tag image_url, style: 'width:100%;height: 400px;' %>
           <% end %>
         </div>
         <div class='post-infomation' style='display:flex; flex-direction:column;' >
