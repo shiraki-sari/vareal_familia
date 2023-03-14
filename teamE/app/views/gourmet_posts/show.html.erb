@@ -1,11 +1,27 @@
-<% image_url = @post.pictures.presence || '/no_image.jpeg' %>
+<% image_url = @post.pictures.first.presence || '/no_image.jpeg' %>
 
 <div class="card mt-3">
   <div class="row g-0">
     <div class="col-md-8 position-relative" style="height: 550px;">
-      <%= link_to image_url, "data-lightbox" => image_url do %>
-        <%= image_tag image_url, class: 'w-100 border-end h-100'%>
-      <% end %>
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% @post.pictures.each do |picture| %>
+          <div class="carousel-item active">
+            <%= link_to image_url, "data-lightbox" => image_url do %>
+              <%= image_tag picture %>
+            <% end %>
+          </div>
+        <% end %>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
     <div class="col-md-4 position-relative">
       <div class="card-body">
