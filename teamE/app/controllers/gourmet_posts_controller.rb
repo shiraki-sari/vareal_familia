@@ -15,6 +15,8 @@ class GourmetPostsController < ApplicationController
   def create
     @post = Post.new(gourmet_post_params)
     @post.user_id = @current_user.id
+    @post.picture.attach(resize_image(gourmet_post_params[:picture])) if gourmet_post_params[:picture].present?
+
     if @post.save
       redirect_to gourmet_posts_path
     else
@@ -32,6 +34,8 @@ class GourmetPostsController < ApplicationController
 
   def update
     @post.assign_attributes(gourmet_post_params)
+    @post.picture.attach(resize_image(gourmet_post_params[:picture])) if gourmet_post_params[:picture].present?
+
     if @post.save
       redirect_to gourmet_posts_path, success: '投稿を更新しました。'
     else
@@ -53,5 +57,10 @@ class GourmetPostsController < ApplicationController
 
   def set_user_post
     @post = Post.find_by(id: params[:id], user_id: current_user.id)
+  end
+
+  def resize_image(picture_params)
+    picture_params.tempfile = ImageProcessing::MiniMagick.source(picture_params.tempfile).resize_to_fit(800, 700).call
+    picture_params
   end
 end
