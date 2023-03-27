@@ -1,8 +1,3 @@
-<% # いいね数 %>
-<span class="pe-1 text-primary" data-like-count data-like-post-id="<%= @post.id %>">
-    <%= number_to_human @post.likes.count, format: '%n%u', units: {thousand: 'k'} %>
-</span>
-
 <% # いいねボタン %>
 <% is_liked = @current_user.likes.exists?(post_id: @post.id) # trueならいいね済み %>
 <%= link_to gourmet_post_likes_path(@post), method: :delete, remote: true, style: (is_liked ? "" : "display:none;"), "role": "button", "data-like-post-id": @post.id, "data-like-btn": "", "data-bs-toggle": "tooltip", "data-bs-placement": "bottom", "data-bs-original-title": "いいねを取り消し" do %>
