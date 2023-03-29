@@ -5,7 +5,7 @@ class GourmetPostsController < ApplicationController
 
   def index
     @posts = Post.with_attached_picture.order(updated_at: "DESC").includes(:user)
-    @genres = Genre.all
+    @genres = Post.genres.keys
   end
 
   def new
