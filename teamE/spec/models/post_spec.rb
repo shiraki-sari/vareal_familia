@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  content    :text(65535)
+#  genre      :integer          not null
 #  title      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -22,9 +23,10 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   it 'update blog title and contents' do
     post = FactoryBot.create(:post)
-    post.update({ title: 'タイトル編集', content: '内容編集' })
+    post.update({ title: 'タイトル編集', content: '内容編集', genre: 0 })
     expect(post.title).to eq 'タイトル編集'
     expect(post.content).to eq '内容編集'
+    expect(post.content).to eq 'izakaya'
   end
   #pending "add some examples to (or delete) #{__FILE__}"
 end
