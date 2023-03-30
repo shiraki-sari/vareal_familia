@@ -16,10 +16,12 @@ previewImage = (event) => {
     const file = files[i]
     const fileReader = new FileReader()
     fileReader.onload = () => {
-      const image = document.createElement('img')
-
+      const template = document.querySelector('#preview-template');
+      const clone = template.content.cloneNode(true);
+      const image = clone.querySelector("img");
       image.src = fileReader.result
-      preview.appendChild(image)
+
+      preview.appendChild(clone)
     }
     fileReader.readAsDataURL(file)
   }

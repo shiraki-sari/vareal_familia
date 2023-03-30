@@ -13,33 +13,34 @@ class GourmetPostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(gourmet_post_params)
+    @post = Post.new
+    resize_image(gourmet_post_params) if gourmet_post_params[:pictures].present?
+    @post.assign_attributes(gourmet_post_params)
     @post.user_id = @current_user.id
-    @post.picture.attach(resize_image(gourmet_post_params[:picture])) if gourmet_post_params[:picture].present?
 
     if @post.save
-      redirect_to gourmet_posts_path
+      redirect_to gourmet_posts_path, success: '投稿しました。'
     else
-      render :new
+      render :new, danger: '投稿できませんでした。'
     end
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.with_attached_pictures.find(params[:id])
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.with_attached_pictures.find(params[:id])
   end
 
   def update
+    resize_image(gourmet_post_params) if gourmet_post_params[:pictures].present?
     @post.assign_attributes(gourmet_post_params)
-    @post.picture.attach(resize_image(gourmet_post_params[:picture])) if gourmet_post_params[:picture].present?
 
     if @post.save
-      redirect_to gourmet_posts_path, success: '投稿を更新しました。'
+      redirect_to gourmet_post_path(@post), success: '投稿を更新しました。'
     else
-      redirect_to edit_gourmet_post_path(@post)
+      redirect_to edit_gourmet_post_path(@post), danger: '投稿を更新できませんでした。'
     end
   end
 
@@ -52,15 +53,17 @@ class GourmetPostsController < ApplicationController
   private
 
   def gourmet_post_params
-    params.require(:post).permit(:title, :content, pictures: [])
+    @gourmet_post_params || params.require(:post).permit(:title, :content, pictures: [])
   end
 
   def set_user_post
     @post = Post.find_by(id: params[:id], user_id: current_user.id)
   end
 
-  def resize_image(picture_params)
-    picture_params.tempfile = ImageProcessing::MiniMagick.source(picture_params.tempfile).resize_to_fit(800, 700).call
-    picture_params
+  def resize_image(post_params)
+    post_params[:pictures].each do |picture|
+      picture.tempfile = ImageProcessing::MiniMagick.source(picture.tempfile).resize_to_fit(800, 700).call
+    end
+    post_params
   end
 end
