@@ -2,7 +2,7 @@
   <div class="sidebar">
     <div class="sidebar-content" >
       <% @genres.each do |genre| %>
-        <p><%= genre.name %></p>
+        <p><%= Post.human_attribute_name("genre.#{genre}") %></p>
         <p>
           <a href="#">TOKYO</a>
           <span></span>

@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  content    :text(65535)
+#  genre      :integer          not null
 #  title      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -19,7 +20,8 @@
 #
 FactoryBot.define do
   factory :post do
-    title { 'テストブログタイトル' } 
+    title { 'テストブログタイトル' }
     content { 'テストブログ内容' }
+    genre { 0 }
   end
 end

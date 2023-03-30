@@ -10,6 +10,22 @@ ja:
     attributes:
       post:
         title: タイトル
+      post/genre:
+        izakaya: 居酒屋
+        teishoku: 定食
+        curry: カレー
+        ramen: ラーメン
+        udon: うどん・そば
+        sushi: 寿司
+        yakiniku: 焼肉
+        fastfood: ファストフード
+        cafe: カフェ
+        bakery: パン
+        sweets: スイーツ
+        korean: 韓国料理
+        chinese: 中華
+        italian: イタリアン
+        french: フレンチ
       user:
         name: '名前'
         login_id: 'ログインID'
@@ -25,7 +41,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -51,7 +67,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
