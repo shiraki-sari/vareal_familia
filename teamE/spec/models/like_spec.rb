@@ -51,8 +51,5 @@ RSpec.describe Like, type: :model do
       # すでに登録済みの同一データが存在すること
       expect(new_like.errors[:post_id]).to include('はすでに存在します')
     end
-
-    # 登録したいいねを削除できること
-    # TODO: テスト処理を書く
   end
 end
