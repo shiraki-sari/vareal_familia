@@ -19,9 +19,11 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Post < ApplicationRecord
+  MAX_PICTURE_COUNT = 5
   validates :title, :genre, presence: true
+  validate :picture_count_check
 
-  has_one_attached :picture
+  has_many_attached :pictures
   belongs_to :user, optional: true
 
   enum genre: {
@@ -41,4 +43,9 @@ class Post < ApplicationRecord
     italian: 13,
     french: 14
   }
+
+  private
+  def picture_count_check
+    errors.add(:pictures, '画像は５枚までしか登録できません') if pictures.count > MAX_PICTURE_COUNT
+  end
 end
