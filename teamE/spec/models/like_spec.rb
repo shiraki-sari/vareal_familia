@@ -27,24 +27,21 @@ RSpec.describe Like, type: :model do
   let(:user) { create(:user, :skip_validate) }
   let(:post) { create(:post) }
   
-  # モデルがユーザーと投稿に所属していること
-  describe 'the model must belong to the user and the post' do 
+  describe 'モデルがユーザーと投稿に所属していること' do 
     it { should belong_to(:user) }
     it { should belong_to(:post) }
   end
 
-  describe 'validations' do
+  describe 'バリデーション' do
     # いいねを新規登録（DBレコード追加）
     let!(:like) { create(:like, user: user, post: post) }
 
-    # いいねを新規登録できること
-    it 'the ability to add new likes' do
+    it 'いいねを新規登録できること' do
       # このいいねは、有効なデータであること
       expect(like).to be_valid
     end
 
-    # ユーザーが同じ投稿にいいねを複数登録できないこと（複合ユニークチェック）
-    it 'validates uniqueness of post_id scoped to user_id' do
+    it 'ユーザーが同じ投稿にいいねを複数登録できないこと（複合ユニークチェック）' do
       new_like = build(:like, user: user, post: post)
       # このいいねは、無効なデータであること
       expect(new_like).not_to be_valid

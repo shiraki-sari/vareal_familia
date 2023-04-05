@@ -1,20 +1,19 @@
 <% # いいねボタン %>
-<% is_liked = @current_user.likes.exists?(post_id: @post.id) # trueならいいね済み %>
-<%= link_to gourmet_post_likes_path(@post), method: :delete, remote: true, style: (is_liked ? "" : "display:none;"), "role": "button", "data-like-post-id": @post.id, "data-like-btn": "", "data-bs-toggle": "tooltip", "data-bs-placement": "bottom", "data-bs-original-title": "いいねを取り消し" do %>
-    <i class="fas fa-heart text-primary"></i>
+<%= link_to gourmet_post_likes_path(@post), method: :delete, remote: true, style: (@is_liked&.presence ? "" : "display:none;"), "role": "button", "data-like-post-id": @post.id, "data-like-btn": "", "data-bs-toggle": "tooltip", "data-bs-placement": "bottom", "data-bs-original-title": "いいねを取り消し" do %>
+  <i class="fas fa-heart text-primary"></i>
 <% end %>
-<%= link_to gourmet_post_likes_path(@post), method: :post, remote: true, style: (is_liked ? "display:none;" : ""), "role": "button", "data-like-post-id": @post.id, "data-like-btn": "", "data-bs-toggle": "tooltip", "data-bs-placement": "bottom", "data-bs-original-title": "いいね" do %>
-    <i class="far fa-heart text-primary"></i>
+<%= link_to gourmet_post_likes_path(@post), method: :post, remote: true, style: (@is_liked&.presence ? "display:none;" : ""), "role": "button", "data-like-post-id": @post.id, "data-like-btn": "", "data-bs-toggle": "tooltip", "data-bs-placement": "bottom", "data-bs-original-title": "いいね" do %>
+  <i class="far fa-heart text-primary"></i>
 <% end %>
 
 <script>
 $(function() {
-    // 多重送信対策
-    $('[data-like-btn]').on('click', function(e) {
-        const nowRequesting = $(this).data('now-requesting');
-        if (nowRequesting) return false;
-        const postId = $(this).data('like-post-id');
-        $('[data-like-btn][data-like-post-id="'+postId+'"]').data('now-requesting', true);
-    });
+  // 多重送信対策
+  $('[data-like-btn]').on('click', function(e) {
+    const nowRequesting = $(this).data('now-requesting');
+    if (nowRequesting) return false;
+    const postId = $(this).data('like-post-id');
+    $('[data-like-btn][data-like-post-id="'+postId+'"]').data('now-requesting', true);
+  });
 });
 </script>
