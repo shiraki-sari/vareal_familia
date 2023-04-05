@@ -21,7 +21,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Like < ApplicationRecord
-    belongs_to :post
-    belongs_to :user
-    validates_uniqueness_of :post_id, scope: :user_id
+  belongs_to :post
+  belongs_to :user
+  validates_uniqueness_of :post_id, scope: :user_id
 end
