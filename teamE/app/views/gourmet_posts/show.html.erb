@@ -30,19 +30,24 @@
         <div class="d-flex align-items-start flex-column bd-highlight mb-3">
           <div class="p-2 bd-highlight"><h5 class="card-title"><%= @post.title %></h5></div>
           <div class="p-2 bd-highlight"><p class="card-text"><%= @post.content %></p></div>
-          <% # 投稿したユーザーとログインユーザーが一致するとき削除ボタンを表示 %>
-          <% if @post.user == @current_user %>
-            <div class="show-action__items">
-              <ul class="d-flex flex-row list-unstyled">
+            <div class="show-action__items pe-2">
+              <ul class="d-flex align-items-center flex-row list-unstyled mb-0">
                 <li>
-                  <%= link_to "編集", edit_gourmet_post_path(id: @post.id), class: 'btn btn-outline-success btn-sm text-success bg-white' %>
+                  <% # いいね数といいねボタン %>
+                  <%= render partial: 'likes/like_count', locals: { post: @post } %>
+                  <%= render partial: 'likes/like_btn' %>
                 </li>
-                  <%= link_to "削除", gourmet_post_path(id: @post.id), method: :delete, data: { confirm: "投稿を削除しますか？\n※この操作は元に戻せません。" }, role: 'button', class: 'btn btn-outline-warning btn-sm text-warning bg-white' %>
-                <li>
-                </li>
+                <% # 投稿したユーザーとログインユーザーが一致するとき編集ボタンと削除ボタンを表示 %>
+                <% if @post.user == @current_user %>
+                  <li class="ms-2">
+                    <%= link_to "編集", edit_gourmet_post_path(id: @post.id), class: 'btn btn-outline-success btn-sm text-success bg-white' %>
+                  </li>
+                  <li class="ms-2">
+                    <%= link_to "削除", gourmet_post_path(id: @post.id), method: :delete, data: { confirm: "投稿を削除しますか？\n※この操作は元に戻せません。" }, role: 'button', class: 'btn btn-outline-warning btn-sm text-warning bg-white' %>
+                  </li>
+                <% end %>
               </ul>
             </div>
-          <% end %>
           <div class="position-absolute bottom-0 p-2" style="position: absolute; bottom: 0; "><p class="card-text ">作者: <%= @post.user&.name %></p></div>
           <div class="position-absolute bottom-0 end-0 p-2 bd-highlight"><p class="card-text "><small class="text-muted">最終更新: <%= @post.updated_at.strftime("%Y年%m月%d日 %H:%M") %></small></p></div>
         </div>

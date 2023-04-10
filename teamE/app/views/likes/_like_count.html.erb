@@ -1,0 +1,4 @@
+<% # いいね数 %>
+<span class="pe-1 text-primary" data-like-count data-like-post-id="<%= post.id %>">
+  <%= number_to_human post.likes.count, format: '%n%u', units: {thousand: 'k'} %>
+</span>

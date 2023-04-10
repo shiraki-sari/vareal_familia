@@ -4,7 +4,7 @@ class GourmetPostsController < ApplicationController
   before_action :set_user_post, only: %i[update destroy]
 
   def index
-    @posts = Post.with_attached_pictures.order(updated_at: "DESC").includes(:user)
+    @posts = Post.with_attached_pictures.order(updated_at: "DESC").includes(:user).eager_load(:likes)
     @genres = Post.genres.keys
   end
 
@@ -26,7 +26,8 @@ class GourmetPostsController < ApplicationController
   end
 
   def show
-    @post = Post.with_attached_pictures.find(params[:id])
+    @post = Post.with_attached_pictures.eager_load(:likes).find(params[:id])
+    @liked = @current_user.likes.exists?(post_id: params[:id]) # trueならいいね済み
   end
 
   def edit

@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 2023_03_29_073138) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "likes", id: { comment: "ID" }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", comment: "投稿×ユーザーごとのいいね履歴", force: :cascade do |t|
+    t.bigint "post_id", null: false, comment: "投稿ID"
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id", "user_id"], name: "post_id", unique: true
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+    t.index ["user_id"], name: "user_id"
+  end
+
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -60,5 +71,7 @@ ActiveRecord::Schema.define(version: 2023_03_29_073138) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
 end
