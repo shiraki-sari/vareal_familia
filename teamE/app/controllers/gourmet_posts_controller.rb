@@ -27,7 +27,7 @@ class GourmetPostsController < ApplicationController
 
   def show
     @post = Post.with_attached_pictures.eager_load(:likes).find(params[:id])
-    @is_liked = @current_user.likes.exists?(post_id: params[:id]) # trueならいいね済み
+    @liked = @current_user.likes.exists?(post_id: params[:id]) # trueならいいね済み
   end
 
   def edit

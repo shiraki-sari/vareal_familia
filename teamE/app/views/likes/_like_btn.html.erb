@@ -1,8 +1,8 @@
 <% # いいねボタン %>
-<%= link_to gourmet_post_likes_path(@post), method: :delete, remote: true, style: (@is_liked&.presence ? "" : "display:none;"), "role": "button", "data-like-post-id": @post.id, "data-like-btn": "", "data-bs-toggle": "tooltip", "data-bs-placement": "bottom", "data-bs-original-title": "いいねを取り消し" do %>
+<%= link_to gourmet_post_likes_path(@post), method: :delete, remote: true, style: (@liked&.presence ? "" : "display:none;"), "role": "button", "data-like-post-id": @post.id, "data-like-btn": "", "data-bs-toggle": "tooltip", "data-bs-placement": "bottom", "data-bs-original-title": "いいねを取り消し" do %>
   <i class="fas fa-heart text-primary"></i>
 <% end %>
-<%= link_to gourmet_post_likes_path(@post), method: :post, remote: true, style: (@is_liked&.presence ? "display:none;" : ""), "role": "button", "data-like-post-id": @post.id, "data-like-btn": "", "data-bs-toggle": "tooltip", "data-bs-placement": "bottom", "data-bs-original-title": "いいね" do %>
+<%= link_to gourmet_post_likes_path(@post), method: :post, remote: true, style: (@liked&.presence ? "display:none;" : ""), "role": "button", "data-like-post-id": @post.id, "data-like-btn": "", "data-bs-toggle": "tooltip", "data-bs-placement": "bottom", "data-bs-original-title": "いいね" do %>
   <i class="far fa-heart text-primary"></i>
 <% end %>
 
