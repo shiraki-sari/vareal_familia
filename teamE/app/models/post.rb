@@ -20,6 +20,7 @@
 #
 class Post < ApplicationRecord
   MAX_PICTURE_COUNT = 5
+  attribute :genre, :integer, default: 0
   validates :title, :genre, presence: true
   validate :picture_count_check
 
